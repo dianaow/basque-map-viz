@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+  <style>
+    h1, h2, h3, p, text {
+      padding: 5px;
+      margin: 0px;
+      border: 0px;
+      display: inline-block;
+      color:#f5f5f5;
+    }
+    h1, h2, span {
+      font-family: 'Montserrat', sans-serif;
+      color:#f5f5f5;
+    }
+    h4 {
+      padding-left: 5px;
+      margin: 0px;
+      color: #262626;
+      display: block;
+    }
+    a, a:hover, a:visited {
+      color: white;
+      text-decoration: underline;
+    }
+    body { 
+      font-family: 'Source Sans 3', sans-serif;
+      margin:0;
+      top:0;
+      right:0;
+      bottom:0;
+      left:0;
+      background-color:#171717;
+      position: relative;
+    }
+    .container {
+      display: flex;
+      flex-direction: row;
+      width: 100vw;
+      height: 100vh;
+    }
+    #main {
+      background-color: transparent;
+      height: 100%;
+      padding: 20px;
+      width: 40%
+    }
+    #map-container {
+      width: 60%;
+      height: 100%;
+      position: relative;
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }  
+    #chart-main {
+      width: 100%;
+      height: 130px;
+      position: relative;
+    }
+    #chart-sub {
+      width: 100%;
+      min-height: 435px;
+      margin-top: 15px;
+    }
+    #context {
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .dropdown-container {
+      position: relative;
+      display: inline-block;
+      width: 150px;
+    }
+
+    /* Button for opening dropdown */
+    .dropdown-button {
+      display: block;
+      width: 100%;
+      background-color: transparent;
+      border: 1px solid #fafafa;
+      color: #fafafa;
+      cursor: pointer;
+      outline: none;
+      white-space: nowrap;
+      overflow-x: auto;
+      padding: 5px;
+    }
+
+    /* Dropdown menu */
+    .dropdown-menu {
+      position: absolute;
+      z-index: 20;
+      margin-top: 4px;
+      width: 100%;
+      background-color: #171717;
+      border: 1px solid #e5e7eb; /* neutral-200 */
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      max-height: 240px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      padding: 4px;
+      cursor: pointer;
+    }
+
+    .dropdown-item:hover {
+      background-color: #262626 /* neutral-100 */
+    }
+
+    .dropdown-item input {
+      margin-right: 8px;
+    }
+
+    .dropdown-open .dropdown-menu {
+      display: block;
+    }
+
+    .legend-pill {
+      color: white;
+      border-radius: 0px; 
+      padding: 4px 8px;
+      text-align: center;
+      display: inline-block;
+      font-size: 0.8em;
+      margin: 4px 3px;
+    }
+    button {
+      color: #f5f5f5; 
+      border: 1px solid #f5f5f5;
+      background-color: transparent;
+      cursor: pointer;
+      border-radius: 0px; 
+      padding: 4px 8px;
+      text-align: center;
+      display: inline-block;
+      font-size: 0.8em;
+      margin: 4px 2px;
+    }
+    button:hover {
+      color: #171717; 
+      background-color: #f5f5f5;
+      border: 1px solid #f5f5f5;
+      cursor: pointer;
+    }
+
+    /* Media query for larger screens */
+    @media (min-width: 1800px) { /* Adjust the min-width as necessary */
+      #chart-sub {
+        min-height: 610px; /* Set minimum height to 610px for larger screens */
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <script type="module" src="./index.js"></script>
+  
+  <div class='container'>
+    <div id='main'>
+      <div id='title'>
+        <h2>Basque Country Monitoring Network</h2>
+        <h3>Marine Biodiversity and Environmental Data</h3>
+      </div> 
+      <div id='context'>
+        <div id='stats'>
+          <p><span id="total" style="font-weight:bold"></span></p>
+          <div class="dropdown-container" id="dropdown">
+            <button type="button" class="dropdown-button" id="dropdown-btn">
+              total
+            </button>
+            <div class="dropdown-menu" id="dropdown-menu"></div>
+          </div> 
+          <p>samples collected between <span id="years" style="font-weight:bold"></span></p>
+        </div>
+        <div class='gLegend'></div>
+        <div style="display: flex">
+          <button class="reset">Reset</button>
+          <div class='color-legend'>
+            <button class='color-toggle'>Show age of sites</div>
+          </div>
+      </div>
+      <div id='chart-main'></div>
+      <div id='chart-sub'></div>
+    </div>
+    <div id='map-container'>
+      <div id="map"></div>
+    </div>
+  </div>
+  <div id="footer">
+    <p>AZTI, Marine Research Division, Herrera Kaia Portualdea s/n, 20110 Pasaia, Spain</p>
+  </div>
+</body>
+</html>
