@@ -40,7 +40,7 @@ function init() {
 
   Promise.all(files.map(file => d3.csv(file)))
     .then(data => {
-      initMapData(data[4])
+      initMap(data[4])
       return data.slice(0,4)
     })
     .then(data => {
@@ -115,7 +115,7 @@ function processData(raw) {
 ///////////////////////////////////////////////////////////////////////////
 /////////////////////////////////// Map  //////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
-function initMap() {
+function initMap(data) {
   map = new Map({
     container: 'map',
     style,
@@ -126,9 +126,7 @@ function initMap() {
     maxZoom: 20,
     minZoom: 6
   });
-}
 
-function initMapData(data) {
   var dotsGeoJSON = { "type": "FeatureCollection", "features": [] }
   data.map((d, i) => {
     dotsGeoJSON.features.push({
@@ -145,6 +143,7 @@ function initMapData(data) {
       }
     })
   })
+  console.log('map init', map)
 
   map.on('load', function () {
     console.log("map loaded", dotsGeoJSON.features.length)
@@ -817,7 +816,6 @@ function createLegend(category) {
     })
 }
 
-initMap()
 init()
 
 ///////////////////////////////////////////////////////////////////////////
