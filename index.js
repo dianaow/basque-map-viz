@@ -1,6 +1,8 @@
 import * as d3 from 'd3';
 import { Map, Popup } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+var accessToken = import.meta.env.VITE_ACCESS_TOKEN
+var style = import.meta.env.VITE_MAPBOX_STYLE
 
 var map, map_taxagroup, map_year_taxagroup, map_year_taxaname, samples_taxagroup, samples_taxaname, brushX
 var clicked = false
@@ -115,8 +117,8 @@ function processData(raw) {
 function initMap() {
   map = new Map({
     container: 'map',
-    style: 'mapbox://styles/dianameow/ckfm3cvia3aic19o1leygusqg',
-    accessToken: 'pk.eyJ1IjoiZGlhbmFtZW93IiwiYSI6ImNqcmh4aWJnOTIxemI0NXA0MHYydGwzdm0ifQ.9HakB25m0HLT-uDY2yat7A',
+    style,
+    accessToken,
     center: [-2.4, 43.5097],
     zoom: 8.8,
     antialias: false,
