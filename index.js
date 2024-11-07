@@ -31,11 +31,11 @@ var margin = { top: 20, right: 20, bottom: 30, left: 30 }
 
 function init() {
   const files = [
-    './data/map_year_taxagroup.csv',
-    './data/map_year_taxaname.csv',
-    './data/taxagroup.csv',
-    './data/taxaname.csv',
-    './data/map_taxagroup.csv',
+    '/data/map_year_taxagroup.csv',
+    '/data/map_year_taxaname.csv',
+    '/data/taxagroup.csv',
+    '/data/taxaname.csv',
+    '/data/map_taxagroup.csv',
   ];
 
   Promise.all(files.map(file => d3.csv(file)))
