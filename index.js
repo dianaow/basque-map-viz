@@ -40,6 +40,10 @@ function init() {
 
   Promise.all(files.map(file => d3.csv(file)))
     .then(data => {
+      initMapData(data[4])
+      return data.slice(0,4)
+    })
+    .then(data => {
       processData(data)
     })
     .catch(error => {
@@ -52,7 +56,6 @@ function processData(raw) {
   map_year_taxaname= raw[1]
   samples_taxagroup = raw[2]
   samples_taxaname = raw[3]
-  map_taxagroup = raw[4]
 
   createLegend(tags)
 
@@ -83,8 +86,6 @@ function processData(raw) {
   const lastData =  samples_taxagroup.filter(d => d.year.getTime() === newRange[1].getTime())
   const total = lastData.reduce(function (a, b) { return a + b.cumulative_value; }, 0);
   searchPanel(total, year_range)
-
-  initMapData(map_taxagroup)
 
   d3.select(".reset")
     .on('click', function () {
@@ -146,6 +147,7 @@ function initMapData(data) {
   })
 
   map.on('load', function () {
+    console.log("map loaded", dotsGeoJSON.features.length)
     if (dotsGeoJSON.features.length > 0) {
       //if (map.getLayer('circle') == undefined) {
         map.addLayer({
@@ -232,6 +234,7 @@ function initMapData(data) {
             minzoom: 12
         });
       //}
+      console.log(map.getLayer('circle').id)
     }
   })
 
