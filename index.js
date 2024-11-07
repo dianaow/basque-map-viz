@@ -147,7 +147,7 @@ function initMapData(data) {
 
   map.on('load', function () {
     if (dotsGeoJSON.features.length > 0) {
-      if (map.getLayer('circle') == undefined) {
+      //if (map.getLayer('circle') == undefined) {
         map.addLayer({
           'id': 'circle',
           'type': 'circle',
@@ -186,9 +186,9 @@ function initMapData(data) {
             'circle-opacity': 0.8
           }
         })
-      }
+      //}
 
-      if (map.getLayer('siteid-label') == undefined) {
+      //if (map.getLayer('siteid-label') == undefined) {
         // Add the symbol layer to display the text
         map.addLayer({
             id: 'siteid-label',
@@ -208,9 +208,9 @@ function initMapData(data) {
             },
             minzoom: 8                       // Layer will only be visible at zoom level 8 or higher
         });
-      }
+      //}
 
-      if (map.getLayer('siteid-count-label') == undefined) {
+      //if (map.getLayer('siteid-count-label') == undefined) {
         // Add the symbol layer to display the text
         map.addLayer({
             id: 'siteid-count-label',
@@ -231,7 +231,7 @@ function initMapData(data) {
             },
             minzoom: 12
         });
-      }
+      //}
     }
   })
 
